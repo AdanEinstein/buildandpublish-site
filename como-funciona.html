@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como funciona — BuildAndPublish</title>
+<meta name="description" content="Do pedido ao agente até o vídeo publicado: os estágios do pipeline e como acompanhar cada job.">
+<meta property="og:title" content="Como funciona — BuildAndPublish">
+<meta property="og:description" content="Do pedido ao agente até o vídeo publicado: os estágios do pipeline e como acompanhar cada job.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000" id="theme-color">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>try{var d=document.documentElement,l=localStorage.getItem('bnp-lang')||(navigator.language||'').slice(0,2);d.lang=l==='en'?'en':'pt-BR';var t=localStorage.getItem('bnp-theme')==='light'?'light':'dark';d.dataset.theme=t;document.getElementById('theme-color').content=t==='light'?'#ffffff':'#000000'}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main"><span data-l="pt">Pular para o conteúdo</span><span data-l="en">Skip to content</span></a>
+
+<header class="top">
+  <a class="brand" href="index.html"><span class="brand__rec" aria-hidden="true"></span><span class="brand__txt">BuildAndPublish</span></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+    <a href="como-funciona.html" aria-current="page"><span data-l="pt">Como funciona</span><span data-l="en">How it works</span></a>
+    <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+    <a href="docs.html" class="nav__keep"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+    <a href="ajuda.html" class="nav__keep"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+    <button class="lang" type="button">EN</button>
+    <button class="theme" type="button" aria-label="Alternar tema">☾</button>
+  </nav>
+</header>
+
+<main id="main">
+<section class="clip" data-anim><div class="wrap split split--flip">
+<div><p class="track track--a"><i>A1</i><span data-l="pt">Passo 1</span><span data-l="en">Step 1</span></p>
+<h1><span data-l="pt">Você pede. O agente dispara.</span><span data-l="en">You ask. The agent starts it.</span></h1>
+<p class="lede"><span data-l="pt">Em linguagem natural ou com um comando <code>/bnp-*</code>. O disparo devolve um <code>jobId</code> e o trabalho segue em segundo plano; se houver jobs demais, o novo espera na fila.</span><span data-l="en">In plain language or with a <code>/bnp-*</code> command. Starting returns a <code>jobId</code> and the work continues in the background; if too many jobs are running, the new one waits in the queue.</span></p></div>
+<div class="monitor">
+      <div class="monitor__bar"><span class="rec">REC</span><span>agente · build-and-publish</span><span class="tc">job 7f3a</span></div>
+      <div class="term" id="term" role="img" aria-label="Terminal: o comando /bnp-youtube-shorts dispara o pipeline até a publicação"></div>
+    </div>
+</div></section>
+<section class="clip" data-anim id="pipeline"><div class="wrap">
+<p class="track track--m"><i>PIPE</i><span data-l="pt">Passo 2</span><span data-l="en">Step 2</span></p>
+<h2><span data-l="pt">Cada estágio roda na ordem certa.</span><span data-l="en">Every stage runs in the right order.</span></h2>
+<p class="lede"><span data-l="pt">Esta é a sequência real do pipeline; o que o seu pedido não usar, é pulado.</span><span data-l="en">This is the pipeline’s real sequence; whatever your request doesn’t use is skipped.</span></p>
+<div class="monitor" style="margin-top:40px" role="img" aria-label="Linha do tempo com as trilhas de corte, reframe, narração, SFX, overlay, thumbnail e publicação sendo preenchidas em ordem">
+      <div class="monitor__bar"><span class="rec">REC</span><span>pipeline.timeline</span><span class="tc">24 fps</span></div>
+      <div class="tl">
+        <div class="tl__ruler"></div>
+        <div class="tl__row"><div class="tl__name"><b>V1</b>Corte</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--v" style="--s:0%;--w:34%;--d:.2s">corte 1</span><span class="tl__clip tl__clip--v" style="--s:35.5%;--w:30%;--d:.35s">corte 2</span><span class="tl__clip tl__clip--v" style="--s:67%;--w:33%;--d:.5s">corte 3</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>V2</b>Reframe 9:16</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--v" style="--s:0%;--w:100%;--d:1s">rosto + crop suave</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>A1</b>Narração</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--a" style="--s:5%;--w:26%;--d:1.8s"></span><span class="tl__clip tl__clip--a" style="--s:40%;--w:22%;--d:1.95s"></span><span class="tl__clip tl__clip--a" style="--s:70%;--w:24%;--d:2.1s"></span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>A2</b>SFX</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--a" style="--s:14%;--w:7%;--d:2.6s"></span><span class="tl__clip tl__clip--a" style="--s:52%;--w:7%;--d:2.75s"></span><span class="tl__clip tl__clip--a" style="--s:82%;--w:7%;--d:2.9s"></span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>FX</b>Overlay</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--m" style="--s:28%;--w:30%;--d:3.3s">fundo removido</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>IMG</b>Thumbnail</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--m" style="--s:0%;--w:14%;--d:3.9s">thumb</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>PUB</b>Publicar</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--p" style="--s:86%;--w:14%;--d:5.2s">▶ no ar</span></div></div>
+        <div class="tl__head" aria-hidden="true"></div>
+      </div>
+    </div>
+<div class="table-scroll prose" style="margin-top:34px"><table><thead><tr><th>#</th><th><span data-l="pt">Estágio</span><span data-l="en">Stage</span></th><th><span data-l="pt">O que faz</span><span data-l="en">What it does</span></th></tr></thead><tbody><tr><td>1</td><td><strong><span data-l="pt">Entrada</span><span data-l="en">Entrada</span></strong></td><td><span data-l="pt">Vídeo do YouTube, arquivo local ou Google Drive.</span><span data-l="en">YouTube video, local file or Google Drive.</span></td></tr><tr><td>2</td><td><strong><span data-l="pt">Corte</span><span data-l="en">Corte</span></strong></td><td><span data-l="pt">A IA escolhe os trechos do tema pedido.</span><span data-l="en">The AI picks the segments for the requested topic.</span></td></tr><tr><td>3</td><td><strong><span data-l="pt">Reframe</span><span data-l="en">Reframe</span></strong></td><td><span data-l="pt">16:9 vira 9:16 seguindo o locutor.</span><span data-l="en">16:9 becomes 9:16 following the speaker.</span></td></tr><tr><td>4</td><td><strong><span data-l="pt">Metadados</span><span data-l="en">Metadados</span></strong></td><td><span data-l="pt">Título, descrição e tags.</span><span data-l="en">Title, description and tags.</span></td></tr><tr><td>5</td><td><strong><span data-l="pt">Thumbnail</span><span data-l="en">Thumbnail</span></strong></td><td><span data-l="pt">Capa gerada com a marca do canal.</span><span data-l="en">Cover generated with the channel brand.</span></td></tr><tr><td>6</td><td><strong><span data-l="pt">Overlays e marketing</span><span data-l="en">Overlays e marketing</span></strong></td><td><span data-l="pt">Logo, “inscreva-se”, “like” e vídeo de marketing.</span><span data-l="en">Logo, “subscribe”, “like” and marketing video.</span></td></tr><tr><td>7</td><td><strong><span data-l="pt">Publicação</span><span data-l="en">Publicação</span></strong></td><td><span data-l="pt">YouTube e Instagram, com agendamento e nova tentativa.</span><span data-l="en">YouTube and Instagram, with scheduling and retries.</span></td></tr></tbody></table></div>
+</div></section>
+<section class="clip"><div class="wrap split"><div>
+<p class="track track--a"><i>MON</i><span data-l="pt">Passo 3</span><span data-l="en">Step 3</span></p>
+<h2><span data-l="pt">Você acompanha ao vivo.</span><span data-l="en">You follow it live.</span></h2>
+<p class="lede"><span data-l="pt">O painel web mostra o log de cada job em tempo real, o histórico e a fila. Pelo agente, <code>/bnp-status</code> e <code>/bnp-jobs</code> dão o mesmo andamento. No celular, um push avisa quando termina, falha ou é cancelado.</span><span data-l="en">The web panel shows each job’s log in real time, the history and the queue. Through the agent, <code>/bnp-status</code> and <code>/bnp-jobs</code> give the same progress. On your phone, a push tells you when it finishes, fails or is cancelled.</span></p></div>
+<div class="card"><h3><span data-l="pt">Antes de escrever</span><span data-l="en">Before writing</span></h3><p><span data-l="pt">No celular, toda ação que escreve (como iniciar um job) pede confirmação. Nada é publicado sem o seu toque.</span><span data-l="en">On mobile, every action that writes (like starting a job) asks for confirmation. Nothing is published without your tap.</span></p></div>
+</div></section>
+<section class="clip end"><div class="wrap">
+<p class="track"><i>PUB</i><span data-l="pt">Passo 4</span><span data-l="en">Step 4</span></p>
+<h2><span data-l="pt">Publicado.</span><span data-l="en">Published.</span></h2>
+<div class="btns"><a class="btn btn--solid" href="planos.html"><span data-l="pt">Ver os planos</span><span data-l="en">See the plans</span> →</a><a class="btn btn--ghost" href="docs.html"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a></div>
+</div></section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© BuildAndPublish</span>
+    <nav aria-label="Rodapé">
+      <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+      <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+      <a href="docs.html"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+      <a href="ajuda.html"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+      <a href="contato.html"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+      <a href="termos.html"><span data-l="pt">Termos</span><span data-l="en">Terms</span></a>
+      <a href="privacidade.html"><span data-l="pt">Privacidade</span><span data-l="en">Privacy</span></a>
+    </nav>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instruções — BuildAndPublish</title>
+<meta name="description" content="Receba a imagem, ative a licença, registre no seu agente de IA e publique o primeiro vídeo.">
+<meta property="og:title" content="Instruções — BuildAndPublish">
+<meta property="og:description" content="Receba a imagem, ative a licença, registre no seu agente de IA e publique o primeiro vídeo.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000" id="theme-color">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>try{var d=document.documentElement,l=localStorage.getItem('bnp-lang')||(navigator.language||'').slice(0,2);d.lang=l==='en'?'en':'pt-BR';var t=localStorage.getItem('bnp-theme')==='light'?'light':'dark';d.dataset.theme=t;document.getElementById('theme-color').content=t==='light'?'#ffffff':'#000000'}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main"><span data-l="pt">Pular para o conteúdo</span><span data-l="en">Skip to content</span></a>
+
+<header class="top">
+  <a class="brand" href="index.html"><span class="brand__rec" aria-hidden="true"></span><span class="brand__txt">BuildAndPublish</span></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+    <a href="como-funciona.html"><span data-l="pt">Como funciona</span><span data-l="en">How it works</span></a>
+    <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+    <a href="docs.html" aria-current="page" class="nav__keep"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+    <a href="ajuda.html" class="nav__keep"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+    <button class="lang" type="button">EN</button>
+    <button class="theme" type="button" aria-label="Alternar tema">☾</button>
+  </nav>
+</header>
+
+<main id="main">
+<div class="wrap doc"><nav class="toc" aria-label="Nesta página"><a href="#inicio"><span data-l="pt">Início rápido</span><span data-l="en">Quick start</span></a><a href="#docker"><span data-l="pt">Docker</span><span data-l="en">Docker</span></a><a href="#env"><span data-l="pt">Configuração (.env)</span><span data-l="en">Configuration (.env)</span></a><a href="#agentes"><span data-l="pt">Registrar no agente</span><span data-l="en">Register with your agent</span></a><a href="#comandos"><span data-l="pt">Comandos /bnp-*</span><span data-l="en">/bnp-* commands</span></a><a href="#painel"><span data-l="pt">Painel web</span><span data-l="en">Web panel</span></a><a href="#celular"><span data-l="pt">No celular</span><span data-l="en">On mobile</span></a><a href="#licenca"><span data-l="pt">Licença</span><span data-l="en">License</span></a></nav><article class="prose"><h1><span data-l="pt">Instruções</span><span data-l="en">Documentation</span></h1>
+<p data-l="pt">Do acesso à imagem ao primeiro vídeo publicado. Dúvidas no caminho? Veja a <a href="ajuda.html">Ajuda</a>.</p><p data-l="en">From image access to your first published video. Questions along the way? See the <a href="ajuda.html">Help</a>.</p>
+
+<h2 id="inicio"><span data-l="pt">Início rápido</span><span data-l="en">Quick start</span></h2>
+<ol>
+<li><span data-l="pt">Peça sua licença em <a href="contato.html">Contato</a> e receba as credenciais do registry privado.</span><span data-l="en">Request your license at <a href="contato.html">Contact</a> and receive the private registry credentials.</span></li>
+<li><span data-l="pt">Entre no registry e baixe a imagem.</span><span data-l="en">Sign in to the registry and pull the image.</span></li>
+<li><span data-l="pt">Suba o container uma vez sem licença: ele imprime o <strong>fingerprint</strong> e encerra.</span><span data-l="en">Start the container once with no license: it prints the <strong>fingerprint</strong> and exits.</span></li>
+<li><span data-l="pt">Envie o fingerprint e receba o <strong>token</strong> da licença.</span><span data-l="en">Send the fingerprint and receive the license <strong>token</strong>.</span></li>
+<li><span data-l="pt">Suba de novo informando o token, registre no agente e peça o primeiro vídeo.</span><span data-l="en">Start again with the token, register with your agent and ask for your first video.</span></li>
+</ol>
+
+<h2 id="docker">Docker</h2>
+<div class="pre"><code>echo "&lt;token-do-registry&gt;" | docker login ghcr.io -u &lt;usuario&gt; --password-stdin
+docker pull ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
+<p data-l="pt">A imagem inclui FFmpeg, yt-dlp e o plugin de PO token. Use <code>-i</code> para manter o STDIN aberto (servidor MCP) e um volume em <code>/app/data</code>: ele guarda histórico, arquivos de trabalho e a identidade da instalação.</p><p data-l="en">The image includes FFmpeg, yt-dlp and the PO token plugin. Use <code>-i</code> to keep STDIN open (MCP server) and a volume at <code>/app/data</code>: it holds history, working files and the installation identity.</p>
+<div class="pre"><code>docker run -i --rm --env-file .env -v bnp-data:/app/data \
+  -e BNP_LICENSE_KEY="&lt;token&gt;" \
+  ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
+<p data-l="pt">Para abrir o painel pelo celular, publique as portas 7420 e 7443 (<code>-p 7420:7420 -p 7443:7443</code>).</p><p data-l="en">To open the panel from your phone, publish ports 7420 and 7443 (<code>-p 7420:7420 -p 7443:7443</code>).</p>
+
+<h2 id="env"><span data-l="pt">Configuração (.env)</span><span data-l="en">Configuration (.env)</span></h2>
+<p data-l="pt">Para usar pelo agente, normalmente basta a chave do provedor de IA e as credenciais das plataformas.</p><p data-l="en">To use it through an agent, the AI provider key and platform credentials are usually enough.</p>
+<div class="table-scroll"><table>
+<thead><tr><th><span data-l="pt">Variável</span><span data-l="en">Variable</span></th><th><span data-l="pt">Para quê</span><span data-l="en">What for</span></th></tr></thead>
+<tbody>
+<tr><td><code>OPENROUTER_API_KEY</code></td><td><span data-l="pt">Chave do OpenRouter (provedor padrão)</span><span data-l="en">OpenRouter key (default provider)</span></td></tr>
+<tr><td><code>YOUTUBE_CLIENT_ID</code> / <code>YOUTUBE_CLIENT_SECRET</code></td><td><span data-l="pt">OAuth2 do YouTube (ou use <code>/bnp-youtube-auth</code>)</span><span data-l="en">YouTube OAuth2 (or use <code>/bnp-youtube-auth</code>)</span></td></tr>
+<tr><td><code>INSTAGRAM_APP_ID</code> / <code>INSTAGRAM_APP_SECRET</code></td><td><span data-l="pt">App do Meta for Developers (ou <code>/bnp-instagram-auth</code>)</span><span data-l="en">Meta for Developers app (or <code>/bnp-instagram-auth</code>)</span></td></tr>
+<tr><td><code>TELEGRAM_BOT_TOKEN</code> / <code>TELEGRAM_CHAT_ID</code></td><td><span data-l="pt">Avisos opcionais ao fim do pipeline</span><span data-l="en">Optional notices when the pipeline ends</span></td></tr>
+<tr><td><code>BNP_MAX_CONCURRENT_JOBS</code></td><td><span data-l="pt">Jobs ao mesmo tempo; os demais esperam na fila</span><span data-l="en">Simultaneous jobs; the rest wait in the queue</span></td></tr>
+<tr><td><code>BNP_FFMPEG_MAX_CONCURRENT</code></td><td><span data-l="pt">Limita o FFmpeg paralelo em máquinas pequenas</span><span data-l="en">Caps parallel FFmpeg on small machines</span></td></tr>
+<tr><td><code>BNP_LICENSE_KEY</code></td><td><span data-l="pt">Token da licença (ou salve em <code>/app/data/license.key</code>)</span><span data-l="en">License token (or save it at <code>/app/data/license.key</code>)</span></td></tr>
+</tbody></table></div>
+
+<h2 id="agentes"><span data-l="pt">Registrar no agente</span><span data-l="en">Register with your agent</span></h2>
+<p data-l="pt">No Claude Code:</p><p data-l="en">In Claude Code:</p>
+<div class="pre"><code>claude mcp add build-and-publish -s user -- \
+  docker run -i --rm --network host --env-file &lt;pasta&gt;/.env \
+  -v bnp-data:/app/data -e BNP_LICENSE_KEY="&lt;token&gt;" \
+  ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
+<p data-l="pt">Reabra o agente para as ferramentas aparecerem. Claude Desktop, Copilot, Opencode, Antigravity, Hermes e qualquer cliente MCP que execute um comando por STDIO aceitam o mesmo <code>docker run</code>.</p><p data-l="en">Reopen the agent so the tools show up. Claude Desktop, Copilot, Opencode, Antigravity, Hermes and any MCP client that runs a command over STDIO accept the same <code>docker run</code>.</p>
+
+<h2 id="comandos"><span data-l="pt">Comandos /bnp-*</span><span data-l="en">/bnp-* commands</span></h2>
+<p data-l="pt">A execução é assíncrona: o disparo devolve um <code>jobId</code> e você acompanha com <code>/bnp-status</code>. Sem os atalhos instalados, peça ao agente em linguagem natural: ele usa as mesmas ferramentas MCP.</p><p data-l="en">Execution is asynchronous: starting returns a <code>jobId</code> and you follow it with <code>/bnp-status</code>. Without the shortcuts installed, ask the agent in plain language: it uses the same MCP tools.</p>
+<div class="table-scroll"><table>
+<thead><tr><th><span data-l="pt">Comando</span><span data-l="en">Command</span></th><th><span data-l="pt">Faz</span><span data-l="en">Does</span></th></tr></thead>
+<tbody>
+<tr><td><code>/bnp-youtube-video &lt;url&gt; &lt;accountId&gt;</code></td><td><span data-l="pt">Gera e publica um vídeo</span><span data-l="en">Builds and publishes a video</span></td></tr>
+<tr><td><code>/bnp-youtube-shorts &lt;url&gt; &lt;accountId&gt;</code></td><td><span data-l="pt">Gera e publica um Shorts (vertical)</span><span data-l="en">Builds and publishes a Short (vertical)</span></td></tr>
+<tr><td><code>/bnp-instagram-reel &lt;url&gt; &lt;accountId&gt;</code></td><td><span data-l="pt">Gera e publica um Reel</span><span data-l="en">Builds and publishes a Reel</span></td></tr>
+<tr><td><code>/bnp-instagram-post &lt;accountId&gt; &lt;title&gt;</code></td><td><span data-l="pt">Gera e publica um post de imagem</span><span data-l="en">Builds and publishes an image post</span></td></tr>
+<tr><td><code>/bnp-multi-publish</code></td><td><span data-l="pt">Gera uma vez e publica em vários destinos</span><span data-l="en">Builds once, publishes to several destinations</span></td></tr>
+<tr><td><code>/bnp-status &lt;jobId&gt;</code> · <code>/bnp-jobs</code></td><td><span data-l="pt">Andamento de um job · lista de jobs</span><span data-l="en">A job’s progress · list of jobs</span></td></tr>
+<tr><td><code>/bnp-youtube-auth</code> · <code>/bnp-instagram-auth</code></td><td><span data-l="pt">Autenticação OAuth</span><span data-l="en">OAuth sign-in</span></td></tr>
+<tr><td><code>/bnp-youtube-channels</code> · <code>/bnp-youtube-cookies</code></td><td><span data-l="pt">Canais disponíveis · renova os cookies do yt-dlp</span><span data-l="en">Available channels · refreshes yt-dlp cookies</span></td></tr>
+</tbody></table></div>
+<h3><span data-l="pt">Exemplo de pedido</span><span data-l="en">Example request</span></h3>
+<div class="pre"><code>/bnp-youtube-shorts
+- Formato vertical, 10 trechos de até 90 segundos
+- Smart reframe seguindo o locutor
+- Thumbnail chamativa com a marca do canal
+- Publicar amanhã às 12:00 no fuso do sistema
+- Se faltar algum dado obrigatório, peça só o mínimo</code></div>
+<div class="note"><p data-l="pt">Quando a conta tem acesso ao Analytics, o pipeline olha os conteúdos de maior audiência dos últimos 90 dias e usa os padrões nos cortes, títulos e roteiros. Se aparecer “sem acesso”, reautentique.</p><p data-l="en">When the account has Analytics access, the pipeline looks at your top content from the last 90 days and uses the patterns in cuts, titles and scripts. If you see “no access”, sign in again.</p></div>
+
+<h2 id="painel"><span data-l="pt">Painel web</span><span data-l="en">Web panel</span></h2>
+<p data-l="pt">Sobe sozinho junto com o servidor MCP em <code>http://localhost:7420</code>. Crie o login em <strong>Primeiro acesso</strong>. Ali você dispara pipelines em <strong>Novo pipeline</strong>, acompanha jobs em tempo real, configura contas e armazenamento, e usa <strong>Clonar e editar</strong> para repetir um job mudando só o necessário.</p><p data-l="en">It starts with the MCP server at <code>http://localhost:7420</code>. Create your login under <strong>First access</strong>. There you start pipelines in <strong>New pipeline</strong>, follow jobs live, configure accounts and storage, and use <strong>Clone and edit</strong> to repeat a job changing only what you need.</p>
+<p data-l="pt">Sem login configurado, o painel recusa acessos que não sejam do próprio computador.</p><p data-l="en">With no login configured, the panel refuses any access that doesn’t come from the machine itself.</p>
+
+<h2 id="celular"><span data-l="pt">No celular</span><span data-l="en">On mobile</span></h2>
+<ol>
+<li><span data-l="pt">No painel do computador, abra o botão <strong>Celular</strong> e leia o QR code (HTTPS local, com certificado próprio).</span><span data-l="en">On the desktop panel, open the <strong>Phone</strong> button and scan the QR code (local HTTPS, with its own certificate).</span></li>
+<li><span data-l="pt">Instale o certificado como <em>CA</em> no aparelho e abra o endereço HTTPS.</span><span data-l="en">Install the certificate as a <em>CA</em> on the device and open the HTTPS address.</span></li>
+<li><span data-l="pt">Use <strong>Instalar app</strong> para ter o painel na tela inicial (PWA).</span><span data-l="en">Use <strong>Install app</strong> to put the panel on your home screen (PWA).</span></li>
+<li><span data-l="pt">No YouTube, toque em <strong>Compartilhar → BuildAndPublish</strong> (Android/Chrome) para criar um job a partir do link.</span><span data-l="en">In YouTube, tap <strong>Share → BuildAndPublish</strong> (Android/Chrome) to create a job from the link.</span></li>
+<li><span data-l="pt">Ative as notificações em <strong>Mais → Notificações</strong>.</span><span data-l="en">Turn on notifications in <strong>More → Notifications</strong>.</span></li>
+</ol>
+<p data-l="pt">Não funcionou? Veja <a href="ajuda.html#celular">Ajuda → celular</a>.</p><p data-l="en">Didn’t work? See <a href="ajuda.html#celular">Help → mobile</a>.</p>
+
+<h2 id="licenca"><span data-l="pt">Licença</span><span data-l="en">License</span></h2>
+<p data-l="pt">Sem licença válida, a imagem imprime o <strong>fingerprint</strong> da instalação e encerra. O token é informado por <code>BNP_LICENSE_KEY</code> ou salvo em <code>/app/data/license.key</code>.</p><p data-l="en">Without a valid license, the image prints the installation <strong>fingerprint</strong> and exits. The token is provided through <code>BNP_LICENSE_KEY</code> or saved at <code>/app/data/license.key</code>.</p>
+<p data-l="pt">Mantenha o mesmo volume em <code>/app/data</code>: ele guarda a identidade da instalação. O container precisa alcançar a internet ao menos uma vez a cada 14 dias para renovar o status da licença. O painel mostra o estado atual da licença.</p><p data-l="en">Keep the same volume at <code>/app/data</code>: it holds the installation identity. The container needs internet access at least once every 14 days to renew the license status. The panel shows the current license state.</p></article></div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© BuildAndPublish</span>
+    <nav aria-label="Rodapé">
+      <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+      <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+      <a href="docs.html"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+      <a href="ajuda.html"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+      <a href="contato.html"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+      <a href="termos.html"><span data-l="pt">Termos</span><span data-l="en">Terms</span></a>
+      <a href="privacidade.html"><span data-l="pt">Privacidade</span><span data-l="en">Privacy</span></a>
+    </nav>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BuildAndPublish — o editor de vídeo dos seus agentes de IA</title>
+<meta name="description" content="Peça o vídeo ao seu agente de IA. O BuildAndPublish corta, enquadra em 9:16 seguindo o locutor, narra, aplica efeitos e publica no YouTube e no Instagram.">
+<meta property="og:title" content="BuildAndPublish — o editor de vídeo dos seus agentes de IA">
+<meta property="og:description" content="Corta, enquadra em 9:16, narra e publica no YouTube e no Instagram. Servidor MCP, painel web e PWA.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#000000" id="theme-color">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>try{var d=document.documentElement,l=localStorage.getItem('bnp-lang')||(navigator.language||'').slice(0,2);d.lang=l==='en'?'en':'pt-BR';var t=localStorage.getItem('bnp-theme')==='light'?'light':'dark';d.dataset.theme=t;document.getElementById('theme-color').content=t==='light'?'#ffffff':'#000000'}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main"><span data-l="pt">Pular para o conteúdo</span><span data-l="en">Skip to content</span></a>
+
+<header class="top">
+  <a class="brand" href="index.html"><span class="brand__rec" aria-hidden="true"></span><span class="brand__txt">BuildAndPublish</span></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+    <a href="como-funciona.html"><span data-l="pt">Como funciona</span><span data-l="en">How it works</span></a>
+    <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+    <a href="docs.html" class="nav__keep"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+    <a href="ajuda.html" class="nav__keep"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+    <button class="lang" type="button">EN</button>
+    <button class="theme" type="button" aria-label="Alternar tema">☾</button>
+  </nav>
+</header>
+
+<aside class="rail" aria-hidden="true">
+  <div class="rail__tc">TC<b id="tc">00:00:00</b></div>
+  <div class="rail__ruler"></div>
+  <div class="rail__head"></div>
+</aside>
+
+<main id="main">
+
+<!-- V1 · hero -->
+<section class="clip" data-anim>
+  <div class="wrap split">
+    <div>
+      <p class="track"><i>V1</i><span data-l="pt">Vídeo · entrada</span><span data-l="en">Video · input</span></p>
+      <h1>
+        <span data-l="pt">Peça o vídeo. O agente <mark>corta, narra e publica.</mark></span>
+        <span data-l="en">Ask for the video. Your agent <mark>cuts, narrates and ships it.</mark></span>
+      </h1>
+      <p class="lede">
+        <span data-l="pt">O BuildAndPublish dá ao seu agente de IA as mãos de um editor: baixa o vídeo, enquadra em 9:16 seguindo quem fala, narra, aplica efeitos sonoros e publica no YouTube e no Instagram.</span>
+        <span data-l="en">BuildAndPublish gives your AI agent an editor’s hands: it downloads the video, reframes to 9:16 following whoever speaks, narrates, adds sound effects and publishes to YouTube and Instagram.</span>
+      </p>
+      <div class="btns">
+        <a class="btn btn--solid" href="contato.html"><span data-l="pt">Falar comigo</span><span data-l="en">Talk to me</span> →</a>
+        <a class="btn btn--ghost" href="como-funciona.html"><span data-l="pt">Ver como funciona</span><span data-l="en">See how it works</span></a>
+      </div>
+      <ul class="facts">
+        <li><span data-l="pt">Roda no seu computador</span><span data-l="en">Runs on your machine</span></li>
+        <li>Docker</li>
+        <li>MCP · <span data-l="pt">painel web</span><span data-l="en">web panel</span> · PWA</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="monitor" role="group" aria-label="Demonstração: o enquadramento 9:16 segue o rosto de quem fala">
+        <div class="monitor__bar"><span class="rec">REC</span><span>entrada.mp4 · 16:9 → 9:16</span><span class="tc">smart reframe</span></div>
+        <div class="monitor__body">
+          <div class="stage">
+            <svg class="scene" viewBox="0 0 640 360" aria-hidden="true">
+              <defs>
+                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26335f"/><stop offset="1" stop-color="#101733"/></linearGradient>
+              </defs>
+              <g id="reframe">
+                <rect width="640" height="360" fill="url(#bg)"/>
+                <rect x="40" y="46" width="120" height="150" rx="6" fill="#33427a" opacity=".55"/>
+                <rect x="480" y="70" width="110" height="8" rx="4" fill="#6c7bb8" opacity=".5"/>
+                <rect x="480" y="108" width="140" height="8" rx="4" fill="#6c7bb8" opacity=".4"/>
+                <rect x="480" y="146" width="90" height="8" rx="4" fill="#6c7bb8" opacity=".3"/>
+                <rect y="300" width="640" height="60" fill="#0b1026"/>
+                <g id="rf-person" transform="translate(268 0)">
+                  <path d="M-86 360c0-64 34-104 86-104s86 40 86 104z" fill="#4f74ff"/>
+                  <rect x="-13" y="206" width="26" height="40" rx="10" fill="#d9a584"/>
+                  <ellipse cx="0" cy="164" rx="31" ry="38" fill="#e7b894"/>
+                  <path d="M-34 156c-2-34 20-52 40-48 22 3 30 24 28 48-8-18-22-26-38-26-12 0-22 8-30 26z" fill="#2a1c17"/>
+                  <circle cx="-11" cy="168" r="3.2" fill="#2a1c17"/><circle cx="11" cy="168" r="3.2" fill="#2a1c17"/>
+                  <path d="M-9 184q9 8 18 0" stroke="#8d4f3b" stroke-width="3" fill="none" stroke-linecap="round"/>
+                </g>
+              </g>
+              <rect id="rf-shade-l" x="0" y="0" width="0" height="360" fill="#05070d" opacity=".62"/>
+              <rect id="rf-shade-r" x="640" y="0" width="0" height="360" fill="#05070d" opacity=".62"/>
+              <rect id="rf-crop" x="219" y="2" width="202.5" height="356" rx="4" fill="none" stroke="#FFB224" stroke-width="3"/>
+              <rect id="rf-face" x="234" y="124" width="68" height="84" rx="4" fill="none" stroke="#19B5C8" stroke-width="2" stroke-dasharray="5 4"/>
+              <text id="rf-score" x="234" y="116" fill="#19B5C8" font-family="Martian Mono, monospace" font-size="12" font-weight="600">rosto 0,97</text>
+            </svg>
+            <div class="phone-lite">
+              <span class="phone-lite__tag">9:16</span>
+              <svg viewBox="0 0 202.5 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g id="rf-mirror"><use href="#reframe"/></g></svg>
+            </div>
+          </div>
+          <div class="wave" aria-hidden="true"></div>
+          <div class="chips" aria-hidden="true"><span class="chip chip--on">narração</span><span class="chip">SFX</span><span class="chip">textos na tela</span><span class="chip">thumbnail</span></div>
+        </div>
+        <div class="toast" role="status"><span aria-hidden="true">▶</span><span data-l="pt"><b>Publicado</b> no YouTube Shorts · agendado 18:00</span><span data-l="en"><b>Published</b> to YouTube Shorts · scheduled 6:00 PM</span></div>
+        <div style="height:14px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A1 · agente -->
+<section class="clip" id="agente" data-anim>
+  <div class="wrap split split--flip">
+    <div>
+      <p class="track track--a"><i>A1</i><span data-l="pt">Agente · MCP</span><span data-l="en">Agent · MCP</span></p>
+      <h2><span data-l="pt">Você conversa. Ele edita.</span><span data-l="en">You chat. It edits.</span></h2>
+      <p class="lede">
+        <span data-l="pt">O servidor MCP expõe o pipeline como ferramentas para Claude Code, Claude Desktop, Copilot, Opencode, Antigravity e Hermes. Um comando pronto por tarefa; o andamento aparece ao vivo no painel.</span>
+        <span data-l="en">The MCP server exposes the pipeline as tools for Claude Code, Claude Desktop, Copilot, Opencode, Antigravity and Hermes. One ready-made command per task; progress shows live in the panel.</span>
+      </p>
+      <ul class="facts">
+        <li><code>/bnp-youtube-shorts</code></li><li><code>/bnp-instagram-reel</code></li><li><code>/bnp-multi-publish</code></li><li><code>/bnp-status</code></li>
+      </ul>
+    </div>
+    <div class="monitor">
+      <div class="monitor__bar"><span class="rec">REC</span><span>agente · build-and-publish</span><span class="tc">job 7f3a</span></div>
+      <div class="term" id="term" role="img" aria-label="Terminal: o comando /bnp-youtube-shorts dispara o pipeline até a publicação"></div>
+    </div>
+  </div>
+</section>
+
+<!-- pipeline -->
+<section class="clip" id="pipeline" data-anim>
+  <div class="wrap">
+    <p class="track track--m"><i>PIPE</i><span data-l="pt">Linha de edição</span><span data-l="en">Edit line</span></p>
+    <h2><span data-l="pt">Todo vídeo passa pela mesma mesa de edição.</span><span data-l="en">Every video goes through the same edit bay.</span></h2>
+    <p class="lede">
+      <span data-l="pt">Entrada → corte → reframe → narração → efeitos → overlay → thumbnail → publicação. Cada estágio é um processador na ordem certa, e você acompanha cada um.</span>
+      <span data-l="en">Input → cut → reframe → narration → effects → overlay → thumbnail → publish. Each stage is a processor in the right order, and you can watch each one.</span>
+    </p>
+    <div class="monitor" style="margin-top:40px" role="img" aria-label="Linha do tempo com as trilhas de corte, reframe, narração, SFX, overlay, thumbnail e publicação sendo preenchidas em ordem">
+      <div class="monitor__bar"><span class="rec">REC</span><span>pipeline.timeline</span><span class="tc">24 fps</span></div>
+      <div class="tl">
+        <div class="tl__ruler"></div>
+        <div class="tl__row"><div class="tl__name"><b>V1</b>Corte</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--v" style="--s:0%;--w:34%;--d:.2s">corte 1</span><span class="tl__clip tl__clip--v" style="--s:35.5%;--w:30%;--d:.35s">corte 2</span><span class="tl__clip tl__clip--v" style="--s:67%;--w:33%;--d:.5s">corte 3</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>V2</b>Reframe 9:16</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--v" style="--s:0%;--w:100%;--d:1s">rosto + crop suave</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>A1</b>Narração</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--a" style="--s:5%;--w:26%;--d:1.8s"></span><span class="tl__clip tl__clip--a" style="--s:40%;--w:22%;--d:1.95s"></span><span class="tl__clip tl__clip--a" style="--s:70%;--w:24%;--d:2.1s"></span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>A2</b>SFX</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--a" style="--s:14%;--w:7%;--d:2.6s"></span><span class="tl__clip tl__clip--a" style="--s:52%;--w:7%;--d:2.75s"></span><span class="tl__clip tl__clip--a" style="--s:82%;--w:7%;--d:2.9s"></span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>FX</b>Overlay</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--m" style="--s:28%;--w:30%;--d:3.3s">fundo removido</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>IMG</b>Thumbnail</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--m" style="--s:0%;--w:14%;--d:3.9s">thumb</span></div></div>
+        <div class="tl__row"><div class="tl__name"><b>PUB</b>Publicar</div><div class="tl__lane">
+          <span class="tl__clip tl__clip--p" style="--s:86%;--w:14%;--d:5.2s">▶ no ar</span></div></div>
+        <div class="tl__head" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- recursos -->
+<section class="clip" id="recursos">
+  <div class="wrap">
+    <p class="track"><i>FX</i><span data-l="pt">O que ele faz</span><span data-l="en">What it does</span></p>
+    <h2><span data-l="pt">Tudo que um editor faz antes de apertar “publicar”.</span><span data-l="en">Everything an editor does before hitting “publish”.</span></h2>
+    <div class="grid">
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M21 12h14M5 28h8M15 28h20"/><path d="M20 6v28" stroke="#FF3B30"/></svg>
+        <h3><span data-l="pt">Corte por tema</span><span data-l="en">Topic-based cuts</span></h3>
+        <p><span data-l="pt">A IA escolhe os trechos do assunto que você pediu e entrega versões do corte para comparar.</span><span data-l="en">The AI picks the segments about the topic you asked for and delivers cut versions to compare.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="32" height="22" rx="3"/><path d="M15 13v14M25 13v14" stroke="#FFB224"/><circle cx="20" cy="20" r="3"/></svg>
+        <h3>Smart reframe</h3>
+        <p><span data-l="pt">16:9 vira 9:16 seguindo quem fala. Detecção de rosto local (YuNet), vários locutores e movimento suave; sem rosto, centraliza.</span><span data-l="en">16:9 becomes 9:16 following whoever speaks. Local face detection (YuNet), multiple speakers, smooth motion; no face, it centers.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 20v0M11 14v12M16 8v24M21 13v14M26 5v30M31 15v10M36 19v2" stroke="#19B5C8"/></svg>
+        <h3><span data-l="pt">Narração e textos</span><span data-l="en">Narration & text</span></h3>
+        <p><span data-l="pt">Texto em voz (TTS) e textos na tela, sincronizados com o corte.</span><span data-l="en">Text-to-speech and on-screen text, synced with the cut.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16h6l9-8v24l-9-8H5z"/><path d="M26 14a8 8 0 0 1 0 12M30 9a14 14 0 0 1 0 22" stroke="#19B5C8"/></svg>
+        <h3><span data-l="pt">Efeitos sonoros</span><span data-l="en">Sound effects</span></h3>
+        <p><span data-l="pt">Busca e aplica SFX no momento certo da edição.</span><span data-l="en">Finds and places SFX at the right moment of the edit.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M20 5 35 13 20 21 5 13z"/><path d="m5 20 15 8 15-8M5 27l15 8 15-8" opacity=".55"/></svg>
+        <h3><span data-l="pt">Overlay sem fundo</span><span data-l="en">Background-free overlay</span></h3>
+        <p><span data-l="pt">Remove o fundo (chromakey) e sobrepõe elementos ao vídeo.</span><span data-l="en">Removes the background (chromakey) and layers elements over the video.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="32" height="26" rx="3"/><path d="m4 28 9-9 7 7 5-5 11 11" stroke="#FFB224"/><circle cx="27" cy="15" r="3"/></svg>
+        <h3>Thumbnails</h3>
+        <p><span data-l="pt">Gera a capa do vídeo junto com título e descrição.</span><span data-l="en">Generates the cover along with title and description.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 33V21M16 33V14M25 33V24M34 33V8" stroke="#19B5C8"/><path d="M4 33h32"/></svg>
+        <h3><span data-l="pt">Aprende com seus números</span><span data-l="en">Learns from your numbers</span></h3>
+        <p><span data-l="pt">Lê o desempenho do YouTube e do Instagram e leva o que funcionou para os próximos roteiros.</span><span data-l="en">Reads YouTube and Instagram performance and carries what worked into the next scripts.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 24a6 6 0 0 0 8.5 0l5-5a6 6 0 0 0-8.5-8.5l-1.5 1.5"/><path d="M24 16a6 6 0 0 0-8.5 0l-5 5a6 6 0 0 0 8.5 8.5l1.5-1.5"/></svg>
+        <h3><span data-l="pt">Links de afiliado</span><span data-l="en">Affiliate links</span></h3>
+        <p><span data-l="pt">Cadastre seus links e eles entram nas publicações sem copiar e colar.</span><span data-l="en">Save your links and they go into the posts, no copy-paste.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- IA -->
+<section class="clip" data-anim>
+  <div class="wrap split">
+    <div>
+      <p class="track track--a"><i>AI</i><span data-l="pt">Motor de IA</span><span data-l="en">AI engine</span></p>
+      <h2><span data-l="pt">O motor de IA é uma peça que você troca.</span><span data-l="en">The AI engine is a part you swap.</span></h2>
+      <p class="lede">
+        <span data-l="pt">Chat, imagem, vídeo, áudio e transcrição rodam em OpenRouter, AbacusAI ou Google GenAI, ou usam o CLI que você já tem logado (Claude Code, OpenCode, Antigravity). Trocou o motor, o fluxo continua o mesmo, e respostas repetidas saem do cache semântico.</span>
+        <span data-l="en">Chat, image, video, audio and transcription run on OpenRouter, AbacusAI or Google GenAI, or use the CLI you’re already logged into (Claude Code, OpenCode, Antigravity). Swap the engine and the flow stays the same, and repeated answers come from the semantic cache.</span>
+      </p>
+    </div>
+    <div class="monitor">
+      <div class="monitor__bar"><span class="rec">REC</span><span>ai.provider</span><span class="tc">troca em runtime</span></div>
+      <div class="monitor__body">
+        <div class="engines" aria-hidden="true">
+          <div class="engine" style="--i:0">OpenRouter</div>
+          <div class="engine" style="--i:1">AbacusAI</div>
+          <div class="engine" style="--i:2">Google GenAI</div>
+          <div class="engine" style="--i:3">CLI local · claude · opencode · agy</div>
+        </div>
+        <div class="flow" aria-hidden="true"><span class="chip">chat</span><span class="chip">imagem</span><span class="chip">vídeo</span><span class="chip">áudio · TTS</span><span class="chip">transcrição</span></div>
+        <div class="cache" aria-hidden="true">prompt repetido → <b>✓ reaproveitado do cache semântico</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- slideshow -->
+<section class="clip" data-anim>
+  <div class="wrap split split--flip">
+    <div>
+      <p class="track"><i>V3</i><span data-l="pt">Sem câmera</span><span data-l="en">No camera</span></p>
+      <h2><span data-l="pt">Da ideia ao vídeo, sem gravar nada.</span><span data-l="en">From idea to video, nothing recorded.</span></h2>
+      <p class="lede">
+        <span data-l="pt">Descreva a ideia ou cole o roteiro. Ele escreve a narração, gera as cenas, coloca os efeitos e monta o vídeo com corte seco, fusão ou movimento Ken Burns.</span>
+        <span data-l="en">Describe the idea or paste the script. It writes the narration, generates the scenes, places the effects and assembles the video with hard cuts, crossfades or Ken Burns motion.</span>
+      </p>
+    </div>
+    <div class="monitor">
+      <div class="monitor__bar"><span class="rec">REC</span><span>slideshow.render</span><span class="tc">1080×1920</span></div>
+      <div class="monitor__body">
+        <div class="reel" role="img" aria-label="Três cenas geradas se alternando com movimento de câmera">
+          <div class="shot" style="--i:0;--o:30% 70%"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#2b4d8f"/><circle cx="240" cy="50" r="22" fill="#FFB224"/><path d="M0 180V120l60-40 50 30 70-60 140 80v50z" fill="#14264a"/></svg><span class="mode">KEN_BURNS</span></div>
+          <div class="shot" style="--i:1;--o:70% 40%"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#5a2a5e"/><g fill="#2a1030"><rect x="20" y="70" width="40" height="110"/><rect x="70" y="40" width="50" height="140"/><rect x="130" y="90" width="36" height="90"/><rect x="176" y="55" width="56" height="125"/><rect x="242" y="85" width="50" height="95"/></g><g fill="#FFB224"><rect x="80" y="55" width="6" height="8"/><rect x="96" y="75" width="6" height="8"/><rect x="190" y="70" width="6" height="8"/><rect x="206" y="95" width="6" height="8"/></g></svg><span class="mode">CROSSFADE</span></div>
+          <div class="shot" style="--i:2;--o:50% 50%"><svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="#0d6b66"/><circle cx="90" cy="90" r="46" fill="#19B5C8" opacity=".85"/><circle cx="210" cy="100" r="62" fill="#0a4d4a"/><path d="M0 150q80-40 160 0t160-10v40H0z" fill="#06302f"/></svg><span class="mode">HARD_CUT</span></div>
+        </div>
+        <div class="steps" aria-hidden="true"><span class="step" style="--i:0">ideia</span><span class="step" style="--i:1">roteiro</span><span class="step" style="--i:2">narração</span><span class="step" style="--i:3">cenas</span><span class="step" style="--i:4">SFX</span><span class="step" style="--i:5">vídeo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- publicar -->
+<section class="clip" data-anim>
+  <div class="wrap split">
+    <div>
+      <p class="track track--m"><i>PUB</i><span data-l="pt">Publicação</span><span data-l="en">Publishing</span></p>
+      <h2><span data-l="pt">Um vídeo, vários destinos.</span><span data-l="en">One video, many destinations.</span></h2>
+      <p class="lede">
+        <span data-l="pt">Gere uma vez e publique em YouTube Shorts e Instagram Reels, com várias contas, agendamento e nova tentativa automática se a plataforma falhar. Você é avisado no fim.</span>
+        <span data-l="en">Render once and publish to YouTube Shorts and Instagram Reels, with multiple accounts, scheduling and automatic retry if the platform fails. You get notified at the end.</span>
+      </p>
+    </div>
+    <div class="monitor">
+      <div class="monitor__bar"><span class="rec">REC</span><span>publish.fanout</span><span class="tc">OAuth2</span></div>
+      <div class="fan" aria-hidden="true">
+        <div class="src">vídeo-final.mp4</div>
+        <svg class="pipe" viewBox="0 0 90 120"><path d="M0 60H30C50 60 50 20 90 20M30 60C50 60 50 100 90 100"/></svg>
+        <div class="dests">
+          <div class="dest dest--ok" style="--i:0"><b>YouTube Shorts</b><em>agendado 18:00</em></div>
+          <div class="dest dest--ok" style="--i:1"><b>Instagram Reel</b><em>conta principal</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- celular -->
+<section class="clip" data-anim>
+  <div class="wrap split split--flip">
+    <div>
+      <p class="track track--a"><i>MOB</i><span data-l="pt">No celular</span><span data-l="en">On mobile</span></p>
+      <h2><span data-l="pt">O painel cabe no bolso.</span><span data-l="en">The panel fits your pocket.</span></h2>
+      <ul class="checks">
+        <li><b><span data-l="pt">Compartilhe do YouTube</span><span data-l="en">Share from YouTube</span></b> — <span data-l="pt">o link cai no painel com prévia e você refaz um job trocando só o link.</span><span data-l="en">the link lands in the panel with a preview and you redo a job by swapping only the link.</span></li>
+        <li><b><span data-l="pt">Confirmação antes de escrever</span><span data-l="en">Confirm before writing</span></b> — <span data-l="pt">nada é publicado sem o seu toque.</span><span data-l="en">nothing is published without your tap.</span></li>
+        <li><b>Push</b> — <span data-l="pt">aviso quando o job termina, falha ou é cancelado.</span><span data-l="en">alert when a job finishes, fails or is cancelled.</span></li>
+        <li><b><span data-l="pt">Login por biometria</span><span data-l="en">Biometric login</span></b> — <span data-l="pt">passkey no aparelho, instalável como app (PWA).</span><span data-l="en">passkey on the device, installable as an app (PWA).</span></li>
+      </ul>
+    </div>
+    <div class="handset" role="img" aria-label="Celular: compartilhar um vídeo do YouTube para o painel, confirmar e receber a notificação de job concluído">
+      <div class="handset__screen">
+        <div class="scr scr--share" style="--i:0">
+          <div class="vid"></div><b>3 erros de quem começa</b><br><span style="color:#666">Canal Exemplo · 12 mil views</span>
+          <div class="sheet"><b><span data-l="pt">Compartilhar</span><span data-l="en">Share</span></b><div class="app"><i></i>BuildAndPublish</div></div>
+        </div>
+        <div class="scr" style="--i:1;background:#f4f6fb">
+          <b><span data-l="pt">Novo job</span><span data-l="en">New job</span></b>
+          <div class="vid" style="margin-top:10px"></div>
+          <span style="color:#555">youtu.be/…</span>
+          <div class="pbtn"><span data-l="pt">Confirmar e iniciar</span><span data-l="en">Confirm and start</span></div>
+        </div>
+        <div class="scr" style="--i:2;background:#f4f6fb">
+          <b>Jobs</b>
+          <div class="app" style="margin-top:10px">▶ Shorts · 3 erros… <span style="margin-left:auto;color:#0a7a54">✓</span></div>
+          <div class="app" style="opacity:.6">▶ Reel · Dicas… <span style="margin-left:auto">⏳</span></div>
+        </div>
+        <div class="push"><b>BuildAndPublish</b><span data-l="pt">Job concluído: publicado no YouTube Shorts.</span><span data-l="en">Job done: published to YouTube Shorts.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- licença -->
+<section class="clip" id="licenca">
+  <div class="wrap">
+    <p class="track track--m"><i>LIC</i><span data-l="pt">Licença</span><span data-l="en">License</span></p>
+    <h2><span data-l="pt">Uma licença por instalação.</span><span data-l="en">One license per installation.</span></h2>
+    <p class="lede">
+      <span data-l="pt">Você recebe uma imagem Docker privada, assinada, e uma licença vinculada à sua instalação. Atualizações e suporte por e-mail incluídos; a licença pode ser renovada ou revogada a qualquer momento.</span><span data-l="en">You get a private, signed Docker image and a license bound to your installation. Updates and email support included; the license can be renewed or revoked at any time.</span>
+    </p>
+    <div class="tiers">
+      <div class="tier tier--hot">
+        <span class="tier__tag"><span data-l="pt">Licença</span><span data-l="en">License</span></span>
+        <h3><span data-l="pt">Uma instalação</span><span data-l="en">One installation</span></h3>
+        <p><span data-l="pt">Para criadores e equipes que querem o pipeline rodando na própria máquina ou servidor.</span><span data-l="en">For creators and teams who want the pipeline running on their own machine or server.</span></p>
+        <ul><li><span data-l="pt">Imagem Docker privada e assinada</span><span data-l="en">Private, signed Docker image</span></li><li><span data-l="pt">Licença vinculada à instalação</span><span data-l="en">License bound to the installation</span></li><li><span data-l="pt">Atualizações e suporte por e-mail</span><span data-l="en">Updates and email support</span></li></ul>
+        <a class="btn" href="contato.html"><span data-l="pt">Quero uma licença</span><span data-l="en">I want a license</span></a>
+      </div>
+      <div class="tier">
+        <span class="tier__tag"><span data-l="pt">Equipes e agências</span><span data-l="en">Teams and agencies</span></span>
+        <h3><span data-l="pt">Várias instalações</span><span data-l="en">Several installations</span></h3>
+        <p><span data-l="pt">Uma licença por instalação, no mesmo contrato, com renovação conjunta.</span><span data-l="en">One license per installation, under the same contract, renewed together.</span></p>
+        <ul><li><span data-l="pt">Uma licença por servidor ou estação</span><span data-l="en">One license per server or workstation</span></li><li><span data-l="pt">Acesso ao registry por cliente, revogável</span><span data-l="en">Per-customer registry access, revocable</span></li><li><span data-l="pt">Renovação e revogação centralizadas</span><span data-l="en">Central renewal and revocation</span></li></ul>
+        <a class="btn btn--ghost" href="planos.html"><span data-l="pt">Ver os planos</span><span data-l="en">See the plans</span></a>
+      </div>
+      <div class="tier">
+        <span class="tier__tag"><span data-l="pt">Sob consulta</span><span data-l="en">On request</span></span>
+        <h3><span data-l="pt">Sob medida</span><span data-l="en">Custom</span></h3>
+        <p><span data-l="pt">Integrações e fluxos próprios para a sua operação.</span><span data-l="en">Integrations and workflows built for your operation.</span></p>
+        <ul><li><span data-l="pt">Novos provedores e destinos</span><span data-l="en">New providers and destinations</span></li><li><span data-l="pt">Implantação assistida</span><span data-l="en">Assisted deployment</span></li><li><span data-l="pt">Contrato de serviço</span><span data-l="en">Service agreement</span></li></ul>
+        <a class="btn btn--ghost" href="contato.html"><span data-l="pt">Falar comigo</span><span data-l="en">Talk to me</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clip end">
+  <div class="wrap">
+    <p class="track"><i>END</i><span data-l="pt">Fim da timeline</span><span data-l="en">End of timeline</span></p>
+    <h2><span data-l="pt">Pronto para o primeiro corte?</span><span data-l="en">Ready for your first cut?</span></h2>
+    <div class="btns">
+      <a class="btn btn--solid" href="contato.html"><span data-l="pt">Quero uma licença</span><span data-l="en">I want a license</span> →</a>
+      <a class="btn btn--ghost" href="docs.html"><span data-l="pt">Ver as instruções</span><span data-l="en">Read the docs</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© BuildAndPublish</span>
+    <nav aria-label="Rodapé">
+      <a href="recursos.html"><span data-l="pt">Recursos</span><span data-l="en">Features</span></a>
+      <a href="planos.html"><span data-l="pt">Planos</span><span data-l="en">Plans</span></a>
+      <a href="docs.html"><span data-l="pt">Instruções</span><span data-l="en">Docs</span></a>
+      <a href="ajuda.html"><span data-l="pt">Ajuda</span><span data-l="en">Help</span></a>
+      <a href="contato.html"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+      <a href="termos.html"><span data-l="pt">Termos</span><span data-l="en">Terms</span></a>
+      <a href="privacidade.html"><span data-l="pt">Privacidade</span><span data-l="en">Privacy</span></a>
+    </nav>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
