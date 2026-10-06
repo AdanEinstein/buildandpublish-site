@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#000000" id="theme-color">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<script>try{var d=document.documentElement,l=localStorage.getItem('bnp-lang')||(navigator.language||'').slice(0,2);d.lang=l==='en'?'en':'pt-BR';var t=localStorage.getItem('bnp-theme')==='light'?'light':'dark';d.dataset.theme=t;document.getElementById('theme-color').content=t==='light'?'#ffffff':'#000000'}catch(e){}</script>
+<script>try{var d=document.documentElement,l=localStorage.getItem('bnp-lang');d.lang=l==='en'?'en':'pt-BR';var t=localStorage.getItem('bnp-theme')==='light'?'light':'dark';d.dataset.theme=t;document.getElementById('theme-color').content=t==='light'?'#ffffff':'#000000'}catch(e){}</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -37,22 +37,25 @@
 <ol>
 <li><span data-l="pt">Peça sua licença em <a href="contato.html">Contato</a> e receba as credenciais do registry privado.</span><span data-l="en">Request your license at <a href="contato.html">Contact</a> and receive the private registry credentials.</span></li>
 <li><span data-l="pt">Entre no registry e baixe a imagem.</span><span data-l="en">Sign in to the registry and pull the image.</span></li>
-<li><span data-l="pt">Suba o container uma vez sem licença: ele imprime o <strong>fingerprint</strong> e encerra.</span><span data-l="en">Start the container once with no license: it prints the <strong>fingerprint</strong> and exits.</span></li>
-<li><span data-l="pt">Envie o fingerprint e receba o <strong>token</strong> da licença.</span><span data-l="en">Send the fingerprint and receive the license <strong>token</strong>.</span></li>
-<li><span data-l="pt">Suba de novo informando o token, registre no agente e peça o primeiro vídeo.</span><span data-l="en">Start again with the token, register with your agent and ask for your first video.</span></li>
+<li><span data-l="pt">Suba o container e abra o painel em <code>http://localhost:7420</code>. Não precisa de <code>.env</code> nem de licença para isso.</span><span data-l="en">Start the container and open the panel at <code>http://localhost:7420</code>. No <code>.env</code> or license needed for that.</span></li>
+<li><span data-l="pt">Crie o login. O painel pede o <strong>código de primeiro acesso</strong>, que está no log do container.</span><span data-l="en">Create your login. The panel asks for the <strong>first access code</strong>, which is in the container log.</span></li>
+<li><span data-l="pt">Em <strong>Primeiros passos</strong>, copie o código deste computador (fingerprint), envie e cole o <strong>token</strong> da licença que receber.</span><span data-l="en">In <strong>Getting started</strong>, copy this computer’s code (fingerprint), send it and paste the license <strong>token</strong> you receive.</span></li>
+<li><span data-l="pt">Ali mesmo, conecte a IA e as contas. Depois registre no agente e peça o primeiro vídeo.</span><span data-l="en">Right there, connect the AI and your accounts. Then register with your agent and ask for your first video.</span></li>
 </ol>
 
 <h2 id="docker">Docker</h2>
 <div class="pre"><code>echo "&lt;token-do-registry&gt;" | docker login ghcr.io -u &lt;usuario&gt; --password-stdin
 docker pull ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
 <p data-l="pt">A imagem inclui FFmpeg, yt-dlp e o plugin de PO token. Use <code>-i</code> para manter o STDIN aberto (servidor MCP) e um volume em <code>/app/data</code>: ele guarda histórico, arquivos de trabalho e a identidade da instalação.</p><p data-l="en">The image includes FFmpeg, yt-dlp and the PO token plugin. Use <code>-i</code> to keep STDIN open (MCP server) and a volume at <code>/app/data</code>: it holds history, working files and the installation identity.</p>
-<div class="pre"><code>docker run -i --rm --env-file .env -v bnp-data:/app/data \
-  -e BNP_LICENSE_KEY="&lt;token&gt;" \
-  ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
-<p data-l="pt">Para abrir o painel pelo celular, publique as portas 7420 e 7443 (<code>-p 7420:7420 -p 7443:7443</code>).</p><p data-l="en">To open the panel from your phone, publish ports 7420 and 7443 (<code>-p 7420:7420 -p 7443:7443</code>).</p>
+<p data-l="pt">Para a primeira configuração, suba o painel em segundo plano e pegue o código de primeiro acesso no log:</p><p data-l="en">For the first setup, start the panel in the background and get the first access code from the log:</p>
+<div class="pre"><code>docker run -d -i --name bnp -v bnp-data:/app/data \
+  -p 7420:7420 -p 7443:7443 \
+  ghcr.io/adaneinstein/buildandpublish-pro:latest
+docker logs bnp 2&gt;&amp;1 | grep "primeiro acesso"</code></div>
+<p data-l="pt">Sem licença o container sobe só para você configurá-lo: nenhum vídeo é gerado até a licença ser colada no painel. Tudo o que você salva no painel (login, licença, chaves) fica no volume e vale para os próximos containers. As portas 7420 e 7443 também servem para abrir o painel pelo celular. Terminou de configurar? <code>docker rm -f bnp</code> e registre no agente.</p><p data-l="en">With no license the container starts only so you can set it up: no video is generated until the license is pasted in the panel. Everything you save in the panel (login, license, keys) lives in the volume and carries over to later containers. Ports 7420 and 7443 also let you open the panel from your phone. Done setting up? <code>docker rm -f bnp</code> and register with your agent.</p>
 
 <h2 id="env"><span data-l="pt">Configuração (.env)</span><span data-l="en">Configuration (.env)</span></h2>
-<p data-l="pt">Para usar pelo agente, normalmente basta a chave do provedor de IA e as credenciais das plataformas.</p><p data-l="en">To use it through an agent, the AI provider key and platform credentials are usually enough.</p>
+<p data-l="pt">Opcional: tudo abaixo pode ser preenchido no painel, em <strong>Primeiros passos</strong> e <strong>Configuração</strong>. O <code>.env</code> (via <code>--env-file</code>) serve para quem prefere arquivo, e o que vem nele vence o que foi salvo no painel.</p><p data-l="en">Optional: everything below can be filled in on the panel, under <strong>Getting started</strong> and <strong>Settings</strong>. The <code>.env</code> (via <code>--env-file</code>) is for those who prefer a file, and what it sets wins over what was saved in the panel.</p>
 <div class="table-scroll"><table>
 <thead><tr><th><span data-l="pt">Variável</span><span data-l="en">Variable</span></th><th><span data-l="pt">Para quê</span><span data-l="en">What for</span></th></tr></thead>
 <tbody>
@@ -68,9 +71,9 @@ docker pull ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
 <h2 id="agentes"><span data-l="pt">Registrar no agente</span><span data-l="en">Register with your agent</span></h2>
 <p data-l="pt">No Claude Code:</p><p data-l="en">In Claude Code:</p>
 <div class="pre"><code>claude mcp add build-and-publish -s user -- \
-  docker run -i --rm --network host --env-file &lt;pasta&gt;/.env \
-  -v bnp-data:/app/data -e BNP_LICENSE_KEY="&lt;token&gt;" \
+  docker run -i --rm --network host -v bnp-data:/app/data \
   ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
+<p data-l="pt">Use o mesmo volume da configuração: licença, login e chaves vêm dele. Se preferir arquivo, acrescente <code>--env-file &lt;pasta&gt;/.env</code>.</p><p data-l="en">Use the same volume as the setup: license, login and keys come from it. If you prefer a file, add <code>--env-file &lt;folder&gt;/.env</code>.</p>
 <p data-l="pt">Reabra o agente para as ferramentas aparecerem. Claude Desktop, Copilot, Opencode, Antigravity, Hermes e qualquer cliente MCP que execute um comando por STDIO aceitam o mesmo <code>docker run</code>.</p><p data-l="en">Reopen the agent so the tools show up. Claude Desktop, Copilot, Opencode, Antigravity, Hermes and any MCP client that runs a command over STDIO accept the same <code>docker run</code>.</p>
 
 <h2 id="comandos"><span data-l="pt">Comandos /bnp-*</span><span data-l="en">/bnp-* commands</span></h2>
@@ -97,8 +100,8 @@ docker pull ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
 <div class="note"><p data-l="pt">Quando a conta tem acesso ao Analytics, o pipeline olha os conteúdos de maior audiência dos últimos 90 dias e usa os padrões nos cortes, títulos e roteiros. Se aparecer “sem acesso”, reautentique.</p><p data-l="en">When the account has Analytics access, the pipeline looks at your top content from the last 90 days and uses the patterns in cuts, titles and scripts. If you see “no access”, sign in again.</p></div>
 
 <h2 id="painel"><span data-l="pt">Painel web</span><span data-l="en">Web panel</span></h2>
-<p data-l="pt">Sobe sozinho junto com o servidor MCP em <code>http://localhost:7420</code>. Crie o login em <strong>Primeiro acesso</strong>. Ali você dispara pipelines em <strong>Novo pipeline</strong>, acompanha jobs em tempo real, configura contas e armazenamento, e usa <strong>Clonar e editar</strong> para repetir um job mudando só o necessário.</p><p data-l="en">It starts with the MCP server at <code>http://localhost:7420</code>. Create your login under <strong>First access</strong>. There you start pipelines in <strong>New pipeline</strong>, follow jobs live, configure accounts and storage, and use <strong>Clone and edit</strong> to repeat a job changing only what you need.</p>
-<p data-l="pt">Sem login configurado, o painel recusa acessos que não sejam do próprio computador.</p><p data-l="en">With no login configured, the panel refuses any access that doesn’t come from the machine itself.</p>
+<p data-l="pt">Sobe sozinho junto com o servidor MCP em <code>http://localhost:7420</code>. Crie o login em <strong>Primeiro acesso</strong> e siga <strong>Primeiros passos</strong>: licença, IA (chave de um provedor ou um CLI já logado no computador, como Claude Code, OpenCode ou Antigravity) e contas. Ali você dispara pipelines em <strong>Novo pipeline</strong>, acompanha jobs em tempo real, configura contas e armazenamento, e usa <strong>Clonar e editar</strong> para repetir um job mudando só o necessário.</p><p data-l="en">It starts with the MCP server at <code>http://localhost:7420</code>. Create your login under <strong>First access</strong> and follow <strong>Getting started</strong>: license, AI (a provider key or a CLI already logged in on the computer, such as Claude Code, OpenCode or Antigravity) and accounts. There you start pipelines in <strong>New pipeline</strong>, follow jobs live, configure accounts and storage, and use <strong>Clone and edit</strong> to repeat a job changing only what you need.</p>
+<p data-l="pt">Sem login configurado, o painel recusa acessos que não sejam do próprio computador. A exceção é criar o login com o <strong>código de primeiro acesso</strong> do log (é o caso do Docker com <code>-p</code>, em que o navegador não chega como <code>localhost</code>). O código vale uma vez e para de funcionar quando o login é criado. A IA local por CLI não roda dentro do Docker.</p><p data-l="en">With no login configured, the panel refuses any access that doesn’t come from the machine itself. The exception is creating the login with the <strong>first access code</strong> from the log (the case for Docker with <code>-p</code>, where the browser doesn’t arrive as <code>localhost</code>). The code works once and stops working when the login is created. Local AI through a CLI doesn’t run inside Docker.</p>
 
 <h2 id="celular"><span data-l="pt">No celular</span><span data-l="en">On mobile</span></h2>
 <ol>
@@ -111,7 +114,7 @@ docker pull ghcr.io/adaneinstein/buildandpublish-pro:latest</code></div>
 <p data-l="pt">Não funcionou? Veja <a href="ajuda.html#celular">Ajuda → celular</a>.</p><p data-l="en">Didn’t work? See <a href="ajuda.html#celular">Help → mobile</a>.</p>
 
 <h2 id="licenca"><span data-l="pt">Licença</span><span data-l="en">License</span></h2>
-<p data-l="pt">Sem licença válida, a imagem imprime o <strong>fingerprint</strong> da instalação e encerra. O token é informado por <code>BNP_LICENSE_KEY</code> ou salvo em <code>/app/data/license.key</code>.</p><p data-l="en">Without a valid license, the image prints the installation <strong>fingerprint</strong> and exits. The token is provided through <code>BNP_LICENSE_KEY</code> or saved at <code>/app/data/license.key</code>.</p>
+<p data-l="pt">Sem licença válida, o container sobe só com o painel: nenhum vídeo é gerado. O <strong>fingerprint</strong> da instalação aparece em <strong>Primeiros passos</strong> (e no log). Cole o token ali, ou informe por <code>BNP_LICENSE_KEY</code>, ou salve em <code>/app/data/license.key</code>. O token colado no painel vale sem reiniciar.</p><p data-l="en">Without a valid license, the container starts with the panel only: no video is generated. The installation <strong>fingerprint</strong> shows in <strong>Getting started</strong> (and in the log). Paste the token there, or provide it through <code>BNP_LICENSE_KEY</code>, or save it at <code>/app/data/license.key</code>. A token pasted in the panel works without a restart.</p>
 <p data-l="pt">Mantenha o mesmo volume em <code>/app/data</code>: ele guarda a identidade da instalação. O container precisa alcançar a internet ao menos uma vez a cada 14 dias para renovar o status da licença. O painel mostra o estado atual da licença.</p><p data-l="en">Keep the same volume at <code>/app/data</code>: it holds the installation identity. The container needs internet access at least once every 14 days to renew the license status. The panel shows the current license state.</p></article></div>
 </main>
 <footer class="foot">
